@@ -1,3 +1,7 @@
 bin
 bin-int
 .vs
+Cream.sln
+Sandbox/Sandbox.vcxproj
+Cream/Cream.vcxproj
+Cream/Cream.vcxproj.filters
