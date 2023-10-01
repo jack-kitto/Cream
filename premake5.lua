@@ -10,6 +10,12 @@ configurations({
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+-- Include directories relative to root folder (solution directory)
+IncludeDir = {}
+IncludeDir["GLFW"] = "Cream/vendor/GLFW/include"
+
+include("Cream/vendor/GLFW/")
+
 project("Sandbox")
 location("Sandbox")
 kind("ConsoleApp")
@@ -71,6 +77,12 @@ files({
 includedirs({
 	"%{prj.name}/src",
 	"%{prj.name}/vendor/spdlog/include",
+	"%{IncludeDir.GLFW}",
+})
+
+links({
+	"GLFW",
+	"opengl32.lib",
 })
 
 filter("system:windows")
