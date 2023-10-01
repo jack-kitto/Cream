@@ -1,3 +1,4 @@
+#include "cmpch.h"
 #include "Log.h"
 
 namespace Cream {

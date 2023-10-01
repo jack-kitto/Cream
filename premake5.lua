@@ -52,6 +52,7 @@ optimize("On")
 filter("configurations:Dist")
 defines("CM_DIST")
 optimize("On")
+
 project("Cream")
 location("Cream")
 kind("SharedLib")
@@ -59,6 +60,8 @@ language("C++")
 
 targetdir("bin/" .. outputdir .. "/%{prj.name}")
 objdir("bin-int/" .. outputdir .. "/%{prj.name}")
+pchheader("cmpch.h")
+pchsource("Cream/src/cmpch.cpp")
 
 files({
 	"%{prj.name}/src/**.h",
