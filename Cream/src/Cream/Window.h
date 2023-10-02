@@ -1,4 +1,7 @@
 #pragma once
+#include "Cream/Core.h"
+#include <GLFW/glfw3.h>
+
 
 namespace Cream {
 	struct WindowProps
@@ -14,8 +17,9 @@ namespace Cream {
 			): Title(title), Width(width), Height(height){}
 
 	};
-	class Window {
+	class CREAM_API Window {
 	public:
+		using EventCallbackFn = std::function<void(Event&)>;
 		virtual ~Window();
 
 		virtual void OnUpdate() = 0;
@@ -24,6 +28,7 @@ namespace Cream {
 		virtual unsigned int GetHeight() const = 0;
 
 		// Window Attributes
+		virtual void SetEventCallback(const EventCallbackFn& callback) = 0;
 		virtual void SetVSync(bool enabled) = 0;
 		virtual bool IsVSync() const = 0;
 
