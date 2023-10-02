@@ -22,7 +22,6 @@ namespace Cream {
 	};
 	void Application::OnEvent(Event& e)
 	{
-		CM_CORE_TRACE(e.ToString());
 		EventDispatcher dispatcher(e);
 		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClose));
 	};
@@ -32,4 +31,14 @@ namespace Cream {
 		m_Running = false;
 		return true;
 	};
+
+	void Application::PushLayer(Layer* layer)
+	{
+		m_LayerStack.PushLayer(layer);
+	}
+
+	void Application::PushOverlay(Layer* layer)
+	{
+		m_LayerStack.PushOverlay(layer);
+	}
 }

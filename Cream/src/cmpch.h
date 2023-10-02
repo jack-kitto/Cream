@@ -3,6 +3,8 @@
 #include "Cream/Log.h"
 #include "Cream/Events/Event.h"
 #include "Cream/Window.h"
+#include "Cream/Layer.h"
+#include "Cream/LayerStack.h"
 
 
 #include <iostream>
