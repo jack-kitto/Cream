@@ -1,6 +1,8 @@
 #pragma once
 
 #include "Cream/Log.h"
+#include "Cream/Events/Event.h"
+
 
 #include <iostream>
 #include <memory>
