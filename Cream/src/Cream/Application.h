@@ -1,6 +1,6 @@
 #pragma once
-
 #include "Core.h"
+
 namespace Cream {
 
 	class CREAM_API Application

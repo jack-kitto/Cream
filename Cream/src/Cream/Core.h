@@ -1,3 +1,4 @@
+#include "cmpch.h"
 #pragma once
 
 #ifdef CM_PLATFORM_WINDOWS
@@ -9,3 +10,4 @@
 #else
 	#error Cream only supports Windows!
 #endif
+#define BIT(x) (1 << x)
