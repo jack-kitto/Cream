@@ -16,7 +16,9 @@ IncludeDir["GLFW"] = "Cream/vendor/GLFW/include"
 
 include("Cream/vendor/GLFW/")
 
+------------------ SANDBOX ------------------
 project("Sandbox")
+---------------------------------------------
 location("Sandbox")
 kind("ConsoleApp")
 language("C++")
@@ -59,7 +61,9 @@ filter("configurations:Dist")
 defines("CM_DIST")
 optimize("On")
 
+------------------ CREAM ------------------
 project("Cream")
+-------------------------------------------
 location("Cream")
 kind("SharedLib")
 language("C++")
