@@ -14,7 +14,7 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 IncludeDir = {}
 IncludeDir["GLFW"] = "Cream/vendor/GLFW/include"
 IncludeDir["Glad"] = "Cream/vendor/Glad/include"
-IncludeDir["imgui"] = "Cream/vendor/imgui/"
+IncludeDir["ImGui"] = "Cream/vendor/imgui/"
 
 include("Cream/vendor/GLFW/")
 include("Cream/vendor/Glad/")

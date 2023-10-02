@@ -28,6 +28,8 @@ public:
 	{
 		CM_CLIENT_INFO("Creating CreamApp!")
 		PushLayer(new ExampleLayer());
+		PushOverlay(new Cream::ImGuiLayer());
+
 	};
 	~CreamApp()
 	{
