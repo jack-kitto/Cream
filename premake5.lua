@@ -13,8 +13,10 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 -- Include directories relative to root folder (solution directory)
 IncludeDir = {}
 IncludeDir["GLFW"] = "Cream/vendor/GLFW/include"
+IncludeDir["Glad"] = "Cream/vendor/Glad/include"
 
 include("Cream/vendor/GLFW/")
+include("Cream/vendor/Glad/")
 
 ------------------ SANDBOX ------------------
 project("Sandbox")
@@ -86,10 +88,12 @@ includedirs({
 	"%{prj.name}/src",
 	"%{prj.name}/vendor/spdlog/include",
 	"%{IncludeDir.GLFW}",
+	"%{IncludeDir.Glad}",
 })
 
 links({
 	"GLFW",
+	"Glad",
 	"opengl32.lib",
 	"dwmapi.lib",
 })
@@ -103,6 +107,7 @@ defines({
 	"CM_PLATFORM_WINDOWS",
 	"CM_BUILD_DLL",
 	"CM_ENABLE_ASSERTS",
+	"GLFW_INCLUDE_NONE",
 })
 
 postbuildcommands({
