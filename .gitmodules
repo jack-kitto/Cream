@@ -4,3 +4,6 @@
 [submodule "GLFW"]
 	path = Cream/vendor/GLFW
 	url = https://github.com/TheCherno/glfw.git
+[submodule "Cream/vendor/imgui"]
+	path = Cream/vendor/imgui
+	url = https://github.com/TheCherno/imgui.git

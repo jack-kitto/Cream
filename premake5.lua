@@ -14,9 +14,11 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 IncludeDir = {}
 IncludeDir["GLFW"] = "Cream/vendor/GLFW/include"
 IncludeDir["Glad"] = "Cream/vendor/Glad/include"
+IncludeDir["imgui"] = "Cream/vendor/imgui/"
 
 include("Cream/vendor/GLFW/")
 include("Cream/vendor/Glad/")
+include("Cream/vendor/imgui/")
 
 ------------------ SANDBOX ------------------
 project("Sandbox")
@@ -89,6 +91,7 @@ includedirs({
 	"%{prj.name}/vendor/spdlog/include",
 	"%{IncludeDir.GLFW}",
 	"%{IncludeDir.Glad}",
+	"%{IncludeDir.ImGui}",
 })
 
 links({
@@ -96,6 +99,7 @@ links({
 	"Glad",
 	"opengl32.lib",
 	"dwmapi.lib",
+	"ImGui",
 })
 
 filter("system:windows")
