@@ -8,7 +8,10 @@ namespace Cream {
 	public:
 		Application();
 		virtual ~Application();
-		static void Run();
+		 void Run();
+	private:
+		std::unique_ptr<Window> m_Window;
+		bool m_Running = true;
 	};
 
 	// Defined by client.

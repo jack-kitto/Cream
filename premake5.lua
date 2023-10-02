@@ -22,6 +22,7 @@ project("Sandbox")
 location("Sandbox")
 kind("ConsoleApp")
 language("C++")
+staticruntime("on")
 
 targetdir("bin/" .. outputdir .. "/%{prj.name}")
 objdir("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -51,13 +52,16 @@ defines({
 
 filter("configurations:Debug")
 defines("CM_DEBUG")
+buildoptions("/MDd")
 symbols("On")
 
 filter("configurations:Release")
 defines("CM_RELEASE")
+buildoptions("/MD")
 optimize("On")
 
 filter("configurations:Dist")
+buildoptions("/MD")
 defines("CM_DIST")
 optimize("On")
 
@@ -67,7 +71,7 @@ project("Cream")
 location("Cream")
 kind("SharedLib")
 language("C++")
-
+staticruntime("on")
 targetdir("bin/" .. outputdir .. "/%{prj.name}")
 objdir("bin-int/" .. outputdir .. "/%{prj.name}")
 pchheader("cmpch.h")
@@ -87,6 +91,7 @@ includedirs({
 links({
 	"GLFW",
 	"opengl32.lib",
+	"dwmapi.lib",
 })
 
 filter("system:windows")
@@ -97,6 +102,7 @@ systemversion("latest")
 defines({
 	"CM_PLATFORM_WINDOWS",
 	"CM_BUILD_DLL",
+	"CM_ENABLE_ASSERTS",
 })
 
 postbuildcommands({
@@ -105,12 +111,15 @@ postbuildcommands({
 
 filter("configurations:Debug")
 defines("CM_DEBUG")
+buildoptions("/MDd")
 symbols("On")
 
 filter("configurations:Release")
 defines("CM_RELEASE")
+buildoptions("/MD")
 optimize("On")
 
 filter("configurations:Dist")
 defines("CM_DIST")
+buildoptions("/MD")
 optimize("On")

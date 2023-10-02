@@ -1,7 +1,12 @@
 #pragma once
+
 #include "Cream/Window.h"
+
+#include <GLFW/glfw3.h>
+
 namespace Cream {
-	class WindowsWindow : public Cream::Window
+
+	class WindowsWindow : public Window
 	{
 	public:
 		WindowsWindow(const WindowProps& props);
@@ -33,5 +38,5 @@ namespace Cream {
 
 		WindowData m_Data;
 	};
-}
 
+}

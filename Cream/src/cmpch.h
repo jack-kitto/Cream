@@ -2,6 +2,7 @@
 
 #include "Cream/Log.h"
 #include "Cream/Events/Event.h"
+#include "Cream/Window.h"
 
 
 #include <iostream>
