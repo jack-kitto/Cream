@@ -3,6 +3,8 @@
 #include "Cream/Window.h"
 
 #include <GLFW/glfw3.h>
+#include "Cream/Events/MouseEvent.h"
+#include "Cream/Events/KeyEvent.h"
 
 namespace Cream {
 
