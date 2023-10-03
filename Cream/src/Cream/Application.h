@@ -6,6 +6,7 @@
 #include "Cream/LayerStack.h"
 #include "Cream/Events/Event.h"
 #include "Cream/Events/ApplicationEvent.h"
+#include "ImGui/ImGuiLayer.h"
 
 namespace Cream {
 
@@ -30,6 +31,8 @@ namespace Cream {
 
 		std::unique_ptr<Window> m_Window;
 		bool m_Running = true;
+		ImGuiLayer* m_ImGuiLayer;
+
 		LayerStack m_LayerStack;
 	private:
 		static Application* s_Instance;
