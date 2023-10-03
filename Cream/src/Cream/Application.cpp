@@ -4,6 +4,7 @@
 #include "Cream/Log.h"
 
 #include <glad/glad.h>
+#include "Input.h"
 
 namespace Cream {
 
@@ -58,6 +59,8 @@ namespace Cream {
 
 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate();
+
+			auto [x, y] = Input::GetMousePosition();
 
 			m_Window->OnUpdate();
 		}
