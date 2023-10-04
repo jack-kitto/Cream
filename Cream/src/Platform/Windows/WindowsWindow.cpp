@@ -1,11 +1,20 @@
 #include "cmpch.h"
 #include "WindowsWindow.h"
+
 #include "Cream/Events/ApplicationEvent.h"
-#include <glad/glad.h>
+#include "Cream/Events/MouseEvent.h"
+#include "Cream/Events/KeyEvent.h"
+
+#include "Platform/OpenGL/OpenGLContext.h"
 
 namespace Cream {
 	
 	static bool s_GLFWInitialized = false;
+
+	static void GLFWErrorCallback(int error, const char* description)
+	{
+		CM_CORE_ERROR("GLFW Error ({0}): {1}", error, description);
+	}
 
 	Window* Window::Create(const WindowProps& props)
 	{
@@ -35,14 +44,15 @@ namespace Cream {
 			// TODO: glfwTerminate on system shutdown
 			int success = glfwInit();
 			CM_CORE_ASSERT(success, "Could not intialize GLFW!");
-
+			glfwSetErrorCallback(GLFWErrorCallback);
 			s_GLFWInitialized = true;
 		}
 
 		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
-		glfwMakeContextCurrent(m_Window);
-		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
-		CM_CORE_ASSERT(status, "Failed to initialize Glad!");
+
+		m_Context = new OpenGLContext(m_Window);
+		m_Context->Init();
+
 		glfwSetWindowUserPointer(m_Window, &m_Data);
 		SetVSync(true);
 
@@ -91,6 +101,14 @@ namespace Cream {
 			}
 		});
 
+		glfwSetCharCallback(m_Window, [](GLFWwindow* window, unsigned int keycode)
+		{
+			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+
+			KeyTypedEvent event(keycode);
+			data.EventCallback(event);
+		});
+
 		glfwSetMouseButtonCallback(m_Window, [](GLFWwindow* window, int button, int action, int mods)
 		{
 			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
@@ -137,7 +155,7 @@ namespace Cream {
 	void WindowsWindow::OnUpdate()
 	{
 		glfwPollEvents();
-		glfwSwapBuffers(m_Window);
+		m_Context->SwapBuffers();
 	}
 
 	void WindowsWindow::SetVSync(bool enabled)

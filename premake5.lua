@@ -25,7 +25,7 @@ include("Cream/vendor/imgui/")
 project("Cream")
 -------------------------------------------
 location("Cream")
-kind("SharedLib")
+kind("StaticLib")
 language("C++")
 staticruntime("on")
 targetdir("bin/" .. outputdir .. "/%{prj.name}")
@@ -38,6 +38,9 @@ files({
 	"%{prj.name}/src/**.cpp",
 	"%{prj.name}/vendor/glm/glm/**.hpp",
 	"%{prj.name}/vendor/glm/glm/**.inl",
+})
+defines({
+	"_CRT_SECURE_NO_WARNINGS",
 })
 
 includedirs({
@@ -67,10 +70,6 @@ defines({
 	"CM_BUILD_DLL",
 	"CM_ENABLE_ASSERTS",
 	"GLFW_INCLUDE_NONE",
-})
-
-postbuildcommands({
-	("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox"),
 })
 
 filter("configurations:Debug")
@@ -107,6 +106,7 @@ files({
 includedirs({
 	"Cream/vendor/spdlog/include",
 	"Cream/src",
+	"Cream/vendor",
 	"%{IncludeDir.glm}",
 })
 

@@ -2,10 +2,14 @@
 #pragma once
 
 #ifdef CM_PLATFORM_WINDOWS
-	#ifdef CM_BUILD_DLL
-		#define CREAM_API __declspec(dllexport)
+	#ifdef CM_DYNAMIC_LINK
+		#ifdef CM_BUILD_DLL
+			#define CREAM_API __declspec(dllexport)
+		#else
+			#define CREAM_API __declspec(dllimport)
+		#endif
 	#else
-		#define CREAM_API __declspec(dllimport)
+		#define CREAM_API
 	#endif
 #else
 	#error Cream only supports Windows!
